@@ -9,6 +9,7 @@ const stockUrl = baseUrl + '/stocks'
 function MainContainer() {
   const [stockArray, setStockArray] = useState([])
   const [purchasedStockArray, setPurchasedStockArray] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState()
 
   useEffect(() => {
     fetch(stockUrl)
@@ -32,10 +33,10 @@ function MainContainer() {
 
   return (
     <div>
-      <SearchBar sortByName={sortByName} sortByPrice={sortByPrice} />
+      <SearchBar sortByName={sortByName} sortByPrice={sortByPrice} setSelectedCategory={setSelectedCategory} />
       <div className="row">
         <div className="col-8">
-          <StockContainer stockArray={stockArray} sendToPortfolio={sendToPortfolio} />
+          <StockContainer stockArray={stockArray.filter((stock) => selectedCategory ? stock.type === selectedCategory : true)} sendToPortfolio={sendToPortfolio} />
         </div>
         <div className="col-4">
           <PortfolioContainer
