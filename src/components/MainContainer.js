@@ -8,6 +8,7 @@ const stockUrl = baseUrl + '/stocks'
 
 function MainContainer() {
   const [stockArray, setStockArray] = useState([])
+  const [purchasedStockArray, setPurchasedStockArray] = useState([])
 
   useEffect(() => {
     fetch(stockUrl)
@@ -15,15 +16,19 @@ function MainContainer() {
       .then(data => setStockArray(data))
   }, [])
 
+  function sendToPortfolio(stock) {
+    setPurchasedStockArray([...purchasedStockArray, stock])
+  }
+
   return (
     <div>
       <SearchBar />
       <div className="row">
         <div className="col-8">
-          <StockContainer stockArray={stockArray} />
+          <StockContainer stockArray={stockArray} sendToPortfolio={sendToPortfolio} />
         </div>
         <div className="col-4">
-          <PortfolioContainer />
+          <PortfolioContainer purchasedStockArray={purchasedStockArray} />
         </div>
       </div>
     </div>
