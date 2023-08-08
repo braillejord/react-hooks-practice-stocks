@@ -21,7 +21,7 @@ function StockContainer({ stockArray, sendToPortfolio }) {
           name={stock.name}
           price={stock.price}
           ticker={stock.ticker}
-          handleBuyStock={handleBuyStock}
+          onClick={() => handleBuyStock(stock.name)}
         />
       ))}
     </div>

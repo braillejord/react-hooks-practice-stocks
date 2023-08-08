@@ -1,12 +1,17 @@
 import React from "react";
 import Stock from "./Stock";
 
-function PortfolioContainer({ purchasedStockArray }) {
-  console.log(purchasedStockArray)
+function PortfolioContainer({ purchasedStockArray, setPurchasedStockArray }) {
 
-  function handleSellStock() {
-    console.log("stock sold")
+  function handleSellStock(name) {
+    const updatedPortfolio = purchasedStockArray.filter((stock) => {
+      if (stock.name !== name) {
+        return true;
+      }
+    })
+    setPurchasedStockArray(updatedPortfolio)
   }
+
 
   return (
     <div>
@@ -17,7 +22,7 @@ function PortfolioContainer({ purchasedStockArray }) {
           name={stock.name}
           price={stock.price}
           ticker={stock.ticker}
-          handleSellStock={handleSellStock}
+          onClick={() => handleSellStock(stock.name)}
         />
       ))}
     </div>

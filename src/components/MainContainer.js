@@ -28,7 +28,9 @@ function MainContainer() {
           <StockContainer stockArray={stockArray} sendToPortfolio={sendToPortfolio} />
         </div>
         <div className="col-4">
-          <PortfolioContainer purchasedStockArray={purchasedStockArray} />
+          <PortfolioContainer
+            purchasedStockArray={purchasedStockArray}
+            setPurchasedStockArray={setPurchasedStockArray} />
         </div>
       </div>
     </div>
