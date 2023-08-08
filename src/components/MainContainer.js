@@ -20,9 +20,19 @@ function MainContainer() {
     setPurchasedStockArray([...purchasedStockArray, stock])
   }
 
+  function sortByName() {
+    const stocksByName = stockArray.sort((a, b) => a.ticker.localeCompare(b.ticker))
+    setStockArray([...stocksByName])
+  }
+
+  function sortByPrice() {
+    const stocksByPrice = stockArray.sort((a, b) => (a.price - b.price))
+    setStockArray([...stocksByPrice])
+  }
+
   return (
     <div>
-      <SearchBar />
+      <SearchBar sortByName={sortByName} sortByPrice={sortByPrice} />
       <div className="row">
         <div className="col-8">
           <StockContainer stockArray={stockArray} sendToPortfolio={sendToPortfolio} />
